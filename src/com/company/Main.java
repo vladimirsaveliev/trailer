@@ -8,7 +8,7 @@ public class Main {
     static int SmallTrailers = 5;
     static int LargeTrailers = 3;
     static String[] SmallTrailersRenters = new String[5];
-    static String[] BigTrailersRenters = new String[3];
+    static String[] LargeTrailersRenters = new String[3];
 
     public static void main(String[] args)
     {
@@ -75,6 +75,8 @@ public class Main {
                 break;
             }
         }
+
+        /* rent the small trailer */
         SmallTrailersRenters[5 - SmallTrailers] = renter;
         SmallTrailers --;
     }
@@ -88,20 +90,51 @@ public class Main {
             while (true) {
                 System.out.print("Would you like to rent a small trailer instead (y/n)?");
                 char answer = in.next().charAt(0);
-                if (answer == 'n') {
+                if (answer == 'n')
                     return;
-                }
+
                 if (answer != 'y')
                     continue;
                 rentSmallTrailer();
                 return;
             }
         }
+
         System.out.print("What is the last name of the customer?");
         String renter = in.next();
-        System.out.print("Is the driver in possession of an E-type drivers license (y/n)?");
 
+        /* ask for driver license */
+        while (true) {
+            System.out.print("Is the driver in possession of an E-type drivers license (y/n)?");
+            char answer = in.next().charAt(0);
+            if (answer == 'n')
+                return;
 
+            if (answer != 'y')
+                continue;
+            break;
+        }
+
+        /* ask for weight of load */
+        System.out.print("What is the weight of the load (in kg)?");
+        int weight = in.nextInt();
+        if (weight > 3000) {
+            System.out.println("Warning! The maximum load (3000 kg) is exceeded by " + (weight - 3000) + "kg!");
+            while (true) {
+                System.out.print("Are you sure you want to rent the trailer (y/n)?");
+                char answer = in.next().charAt(0);
+                if (answer == 'n')
+                    return;
+
+                if (answer != 'y')
+                    continue;
+                break;
+            }
+        }
+
+        /* rent the large trailer */
+        LargeTrailersRenters[3 - LargeTrailers] = renter;
+        LargeTrailers --;
     }
 
     public static void OverviewDisplay()
@@ -113,8 +146,10 @@ public class Main {
 
         System.out.println("Rented large trailers:");
         for (int i = 0; i < 3 - LargeTrailers; i ++)
-            System.out.println("   Large trailer " + (i + 1) + ": " + BigTrailersRenters[i]);
+            System.out.println("   Large trailer " + (i + 1) + ": " + LargeTrailersRenters[i]);
         System.out.println("There are " + LargeTrailers + " out of 3 small trailers still available.");
+
+        System.out.println("There are " + (SmallTrailers + LargeTrailers) + " trailers available in total.");
     }
 }
 
