@@ -57,12 +57,17 @@ public class Main {
     {
         Scanner in = new Scanner(System.in);
 
+        /* check whether small trailers are available */
         if (SmallTrailers == 0) {
             System.out.println("Unfortunately, there are no small trailers available!");
             return;
         }
+
+        /* ask for renter's last name */
         System.out.print("What is the last name of the customer?");
         String renter = in.next();
+
+        /* ask for weight of load */
         System.out.print("What is the weight of the load (in kg)?");
         int weight = in.nextInt();
         if (weight > 750) {
@@ -70,11 +75,15 @@ public class Main {
             while (true) {
                 System.out.print("Are you sure you want to rent the trailer (y/n)?");
                 char answer = in.next().charAt(0);
-                if (answer == 'n') {
+                if (answer == 'n')
+                    /* user entered 'n', return to main menu */
                     return;
-                }
+
                 if (answer != 'y')
+                    /* neither 'y' nor 'n' is entered, re-ask */
                     continue;
+
+                /* user confirmed that he wants to rent */
                 break;
             }
         }
