@@ -85,21 +85,29 @@ public class Main {
     {
         Scanner in = new Scanner(System.in);
 
+        /* check whether large trailers are available */
         if (LargeTrailers == 0) {
             System.out.println("Unfortunately, there are no large trailers available!");
+
+            /* propose to rent small trailer */
             while (true) {
                 System.out.print("Would you like to rent a small trailer instead (y/n)?");
                 char answer = in.next().charAt(0);
                 if (answer == 'n')
+                    /* user entered 'n', return to main menu */
                     return;
 
                 if (answer != 'y')
+                    /* neither 'y' nor 'n' is entered, re-ask */
                     continue;
+
+                /* direct user to small trailer rent */
                 rentSmallTrailer();
                 return;
             }
         }
 
+        /* ask for renter's last name */
         System.out.print("What is the last name of the customer?");
         String renter = in.next();
 
@@ -108,10 +116,14 @@ public class Main {
             System.out.print("Is the driver in possession of an E-type drivers license (y/n)?");
             char answer = in.next().charAt(0);
             if (answer == 'n')
+                /* user entered 'n', return to main menu */
                 return;
 
             if (answer != 'y')
+                /* neither 'y' nor 'n' is entered, re-ask */
                 continue;
+
+            /* user confirmed required driver license */
             break;
         }
 
@@ -124,10 +136,14 @@ public class Main {
                 System.out.print("Are you sure you want to rent the trailer (y/n)?");
                 char answer = in.next().charAt(0);
                 if (answer == 'n')
+                    /* user entered 'n', return to main menu */
                     return;
 
                 if (answer != 'y')
+                    /* neither 'y' nor 'n' is entered, re-ask */
                     continue;
+
+                /* user confirmed that he wants to rent */
                 break;
             }
         }
