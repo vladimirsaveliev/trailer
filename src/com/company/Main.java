@@ -5,8 +5,11 @@ import java.util.Scanner;
 
 public class Main {
 
+    /* number of trailers available for renting */
     static int SmallTrailers = 5;
     static int LargeTrailers = 3;
+
+    /* array to store last names of renters */
     static String[] SmallTrailersRenters = new String[5];
     static String[] LargeTrailersRenters = new String[3];
 
